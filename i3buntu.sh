@@ -93,7 +93,7 @@ replaceing_config_files () {
         git clone https://github.com/007Nil/i3-wm.git
         cd i3-wm
         mv -rf feh/ i3/ ranger/ ~/.config
-	mv -rf .Xresources .fonts/ ~
+	mv -rf .Xresources .fonts/ wallpapers/ ~
 	cd ..
 	rm -rf i3-wm
 	xrdb ~/.Xresources
