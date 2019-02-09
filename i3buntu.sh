@@ -92,7 +92,7 @@ replaceing_config_files () {
         #cloning my repo
         git clone https://github.com/007Nil/i3-wm.git
         cd i3-wm
-        cp -rf feh/ i3/ ranger/ ~/.config
+        cp -rf feh/ i3/ ranger/ ~/.config/
 	cp -rf .Xresources .fonts/ wallpapers/ ~
 	cd ..
 	chmod +x .config/i3/lock
