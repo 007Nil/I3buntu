@@ -38,7 +38,7 @@ check_update() {
 
 i3_packges () {
 	dialog --title "Installing i3 and other important packages" --msgbox "Please be parent get a cup of tee!!!!!!!" 10 76; sleep 2
-	sudo apt install i3 i3lock dmenu i3blocks xinit ranger network-manager-gnome xfce4-notifyd  xfce4-power-manager gvfs gvfs-backends policykit-1 udisks2 xcompmgr rxvt-unicode-256color thunar firefox flashplugin-installer dkms vlc dtrx qbittorrent lxappearance software-properties-common feh ranger lm-sensors scrot xfce4-power-manager
+	sudo apt install i3 i3lock dmenu i3blocks xinit ranger network-manager-gnome xfce4-notifyd  xfce4-power-manager gvfs gvfs-backends policykit-1 udisks2 xcompmgr rxvt-unicode-256color thunar firefox flashplugin-installer dkms vlc dtrx qbittorrent lxappearance software-properties-common feh ranger lm-sensors scrot xfce4-power-manager imagemagick xautolock vim
 }
 
 will_install_i3gaps () {
@@ -95,6 +95,8 @@ replaceing_config_files () {
         cp -rf feh/ i3/ ranger/ ~/.config
 	cp -rf .Xresources .fonts/ wallpapers/ ~
 	cd ..
+	chmod +x .config/i3/lock
+	chmod +x .config/i3/cpu_temp
 	rm -rf i3-wm
 	xrdb ~/.Xresources
 }
