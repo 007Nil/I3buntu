@@ -3,26 +3,30 @@
 #
 #          FILE: i3buntu.sh
 # 
-#         USAGE: ./i3buntu.sh 
+#         USAGE: ./i3buntu.sh        
 # 
 #   DESCRIPTION: I write this scrept for installation o i3-wm in ubuntu based distros
 # 
 #       OPTIONS: 
-#  REQUIREMENTS: Ubutnu based system
-#          BUGS: have to set background manually
+#  REQUIREMENTS: Ubuntu based system
+#          BUGS: Background has to be set manually
 #         NOTES: make it executable using chmod +x .i3buntu.sh
 #        AUTHOR: SAGNIK SARKAR 
 #  ORGANIZATION: SAGNIK SARKAR	
+#  CONTRIBUTORS: Jacob "KREYREN!" Hrbek 
 #       CREATED: Sunday 03 February 2019 15:10
-#      REVISION:  1.0 (beta)
+#      REVISION:  1.0-rc1 (beta)
 #===============================================================================
+
+## Changelog - krey
+# Fixed typos and make script appeal less pathetic alike using "ARE YOU SURE?? LOOKS GOOD!!", etc..
 
 set -o nounset                              # Treat unset variables as an error
 
 #  Declearing all functions
 
 welcomemsg () {\
-	dialog --title "Welcome to I3BUNTU Installation!" --msgbox "\nThis is a Auto-Rice Bootstrapping Script!\n This will automatically install a fully-featured i3-wm Ubuntu desktop , which I use on my laptop.\n\n Nil" 10 76
+	dialog --title "Welcome to I3BUNTU Installation!" --msgbox "\nThis is a Auto-Rice Bootstrapping Script!\n This will automatically install an i3-wm Ubuntu desktop." 10 76 # Sounds unprofessional should be improved - Krey
 }
 
 confermation_from_user (){
@@ -33,24 +37,26 @@ confermation_from_user (){
 
 check_update() { 
 		dialog --infobox "Checking for updates..." 4 40
-		sudo apt update && sudo apt upgrade 
+		sudo apt update && sudo apt upgrade || echo "FATAL: Update failed!" # This should help you diagnose issues.
 }
 
 i3_packges () {
-	dialog --title "Installing i3 and other important packages" --msgbox "Please be parent get a cup of tee!!!!!!!" 10 76; sleep 2
-	sudo apt install i3 i3lock dmenu i3blocks xinit ranger network-manager-gnome xfce4-notifyd  xfce4-power-manager gvfs gvfs-backends policykit-1 udisks2 xcompmgr rxvt-unicode-256color thunar firefox flashplugin-installer dkms vlc dtrx qbittorrent lxappearance software-properties-common feh ranger lm-sensors scrot xfce4-power-manager imagemagick xautolock vim
+	dialog --title "Installing i3 and it's dependencies." --msgbox "Performing installation, please be patient.." 10 76; sleep 2
+	sudo apt install i3 i3lock dmenu i3blocks xinit ranger network-manager-gnome xfce4-notifyd xfce4-power-manager gvfs gvfs-backends policykit-1 udisks2 xcompmgr rxvt-unicode-256color thunar firefox flashplugin-installer dkms vlc dtrx qbittorrent lxappearance software-properties-common feh ranger lm-sensors scrot xfce4-power-manager imagemagick xautolock vim -y # Added -y so that it woudn't ask for confirmation
 }
 
 will_install_i3gaps () {
-	i3gaps=$(dialog --title "Do you want i3-gapps??Its looks good!!" --menu "please select an option" 15 55 5 1 "YES" 2 "NO" --stdout)
+	i3gaps=$(dialog --title "Do you want to install i3-gapps?" --menu "please select an option" 15 55 5 1 "YES" 2 "NO" --stdou)
+	# You could add explanation to what i3-gapps is here..
 }
+
 check_version () {
-         	version=$(dialog --menu "Which version of Ubuntu you are using??" 10 30 30 1 "Ubuntu 16.04" 2 "Ubuntu 18.04" --stdout)
+         	version=$(dialog --menu "Which version of Ubuntu you are using??" 10 30 30 1 "Ubuntu 16.04" 2 "Ubuntu 18.04" --stdout) # This could be grabbed from 'lsb_release | grep Description' on ubuntu.. No need to ask for user-input
 	}
 
 Ubuntu_16_04 () {
        dialog --msgbox "Installing dependencies for I3-gaps on Ubuntu 16.04" 10 60
-       sudo apt-get install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf xutils-dev libtool
+       sudo apt-get install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf xutils-dev libtool -y
        dialog --msgbox "Installing libxcb-xrm-dev from source" 10 60
        mkdir tmp 
        cd tmp
@@ -66,11 +72,11 @@ Ubuntu_16_04 () {
 	
 Ubuntu_18_04 () {
 	dialog --msgbox "Installing dependencies for I3-gaps on Ubuntu 18.04" 10 60
-	sudo apt-get install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf xutils-dev libtool libxcb-xrm-dev
+	sudo apt-get install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf xutils-dev libtool libxcb-xrm-dev -y
 }
 
 Installing_i3_gaps () {
-	dialog --title "Installing I3-gapps on your ubuntu system" --infobox "Processing, please wait" 3 34; sleep 1
+	dialog --title "Installing I3-gapps on your ubuntu system" --infobox "Processing, please wait.." 3 34; sleep 1
 	#Commands for installing i3-gapps
 	cd /tmp
 	# clone the rewpository
@@ -89,7 +95,7 @@ Installing_i3_gaps () {
 }
 replaceing_config_files () {
         dialog --msgbox "Lets setup i3-wm for a rice look" 10 60
-        #cloning my repo
+        #cloning 007Nil repo
         git clone https://github.com/007Nil/i3-wm.git
         cd i3-wm
         cp -rf feh/ i3/ ranger/ ~/.config/
@@ -105,7 +111,6 @@ what_to_install_login_manager() {
 }
 
 #THE MAIN PROCESS
-
 sudo apt-get install git dialog 
 #Welcome Screen
 welcomemsg
@@ -140,7 +145,7 @@ then
 	else
 		dialog --infobox "After reboot start i3 by typing startx" 4 40
 	fi
-	dialog --infobox "Rebooting Now" 10 20
+	dialog --infobox "Rebooting Now" 10 20 # Should force user-input for reboot not reboot for a user.. (may have unsaved work)
 	reboot
 
 else
