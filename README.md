@@ -9,7 +9,7 @@ chmod +x i3buntu.sh <br>
 give it your root password and you are good to go <br>
 
 <h1>After login open your terminal by pressing $mod+Enter</h1><br>
-##$mod=windows key and type 
+## $mod=windows key and type 
 <p>
   > cd I3buntu <br>
   > chmod +x replace_config_files.sh <br>
