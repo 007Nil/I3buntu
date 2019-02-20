@@ -126,17 +126,15 @@ then
 	else
 		sudo apt-get install wicd-gtk
 	fi
-
 	will_install_i3gaps
 	if [ $i3gaps -eq 1 ]
-	then
-		
+	then	
 		check_version
 		if [ $version -eq 1 ]
 		then
 			Ubuntu_16_04
 		else
-                        Ubuntu_18_04
+            Ubuntu_18_04
 		fi
         Installing_i3_gaps
         else
@@ -151,7 +149,7 @@ then
 		dialog --infobox "Installing lighdm as login manager" 4 40
 		sudo apt-get install lightdm lightdm-gtk-greeter
 	else
-		dialog --infobox "After reboot start i3 by typing startx" 4 40; sleep 3
+		dialog --infobox "After reboot start i3 by typing startx" 4 40;
 	fi
 	dialog --infobox "Rebooting Now" 10 20
 	reboot
