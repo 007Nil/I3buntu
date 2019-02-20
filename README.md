@@ -1,7 +1,7 @@
 # I3buntu
 By executing this script you can install customised i3-wm in Ubuntu based system
 <h1>Instructions---------</h1><br>
-#> git clone https://github.com/007Nil/I3buntu.git <br>
+> git clone https://github.com/007Nil/I3buntu.git
 #> cd I3buntu <br>
 > chmod +x i3buntu.sh <br>
 > ./i3buntu<br>
