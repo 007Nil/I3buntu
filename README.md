@@ -1,20 +1,18 @@
 # I3buntu
 By executing this script you can install customised i3-wm in Ubuntu based system
 <h1>Instructions---------</h1><br>
-<p>
->git clone https://github.com/007Nil/I3buntu.git <br>
+> git clone https://github.com/007Nil/I3buntu.git <br>
 > cd I3buntu <br>
 > chmod +x i3buntu.sh <br>
 > ./i3buntu<br>
-  </p>
 give it your root password and you are good to go
 
 <h1>After login open your terminal by pressing $mod+Enter</h1><br>
 <p>$mod=windows key and type</p>
 <p>
-  >cd I3buntu <br>
-  2>chmod +x replace_config_files.sh <br>
-  >./replace_config_files.sh <br>
+  > cd I3buntu <br>
+  > chmod +x replace_config_files.sh <br>
+  >  ./replace_config_files.sh <br>
  </p>
  
  <h1>You are done with I3buntu installation</h1>
