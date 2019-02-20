@@ -14,7 +14,7 @@
 #        AUTHOR: SAGNIK SARKAR 
 #  ORGANIZATION: SAGNIK SARKAR	
 #       CREATED: Sunday 03 February 2019 15:10
-#      REVISION:  1.0 (beta)
+#      REVISION:  1.0 (stable)
 #===============================================================================
 
 set -o nounset                              # Treat unset variables as an error
