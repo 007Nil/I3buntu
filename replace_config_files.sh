@@ -33,5 +33,5 @@ replaceing_config_files () {
  }
 
 replaceing_config_files
-
+reboot
 #end of script
