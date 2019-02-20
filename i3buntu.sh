@@ -38,8 +38,11 @@ check_update() {
 
 i3_packges () {
 	dialog --title "Installing i3 and other important packages" --msgbox "Please be parent get a cup of tee!!!!!!!" 10 76; sleep 2
-	sudo apt install i3 i3lock dmenu i3blocks xinit ranger network-manager-gnome xfce4-notifyd  xfce4-power-manager gvfs gvfs-backends policykit-1 udisks2 xcompmgr rxvt-unicode-256color thunar firefox flashplugin-installer dkms vlc dtrx qbittorrent lxappearance software-properties-common feh ranger lm-sensors scrot xfce4-power-manager imagemagick xautolock vim
+	sudo apt install i3 i3lock dmenu i3blocks xinit ranger xfce4-power-manager gvfs gvfs-backends policykit-1 udisks2 xcompmgr rxvt-unicode-256color thunar firefox flashplugin-installer dkms vlc dtrx qbittorrent lxappearance software-properties-common feh ranger lm-sensors scrot xfce4-power-manager imagemagick xautolock vim
 }
+
+select_network_manager () {
+	network_manager=$(dialog --title "Network Manager setup" --menu "Please select your  preferable Network Manager" 15 55 5 1"Network Manager Gnome" 2"Wicd" --stdout)
 
 will_install_i3gaps () {
 	i3gaps=$(dialog --title "Do you want i3-gapps??Its looks good!!" --menu "please select an option" 15 55 5 1 "YES" 2 "NO" --stdout)
@@ -116,9 +119,17 @@ if [ $confermation -eq 0 ]
 then
 	check_update
 	i3_packges
+	select_network_manager 
+	if [ $network_manager -eq 1 ]
+        then
+
 	will_install_i3gaps
 	if [ $i3gaps -eq 1 ]
 	then
+		sudo apt-get install network manager gnome
+	else
+		sudo apt-get install wicd-gtk
+	fi
 		check_version
 		if [ $version -eq 1 ]
 		then
@@ -131,6 +142,7 @@ then
 	       dialog --infobox "Skping i3 gaps installation"; sleep 2
 
         fi
+	startx
         replaceing_config_files
 	what_to_install_login_manager
 	if [ $login -eq 1 ]
@@ -138,7 +150,7 @@ then
 		dialog --infobox "Installing lighdm as login manager" 4 40
 		sudo apt-get install lightdm lightdm-gtk-greeter
 	else
-		dialog --infobox "After reboot start i3 by typing startx" 4 40
+		dialog --infobox "After reboot start i3 by typing startx" 4 40; sleep 3
 	fi
 	dialog --infobox "Rebooting Now" 10 20
 	reboot
