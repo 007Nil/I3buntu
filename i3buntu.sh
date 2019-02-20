@@ -91,19 +91,7 @@ Installing_i3_gaps () {
 	rm -rf tmp
 
 }
-replaceing_config_files () {
-        dialog --msgbox "Lets setup i3-wm for a rice look" 10 60
-        #cloning my repo
-        git clone https://github.com/007Nil/i3-wm.git
-        cd i3-wm
-        cp -rf feh/ i3/ ranger/ ~/.config/
-	cp -rf .Xresources .fonts/ wallpapers/ ~
-	cd ..
-	chmod +x .config/i3/lock
-	chmod +x .config/i3/cpu_temp
-	rm -rf i3-wm
-	xrdb ~/.Xresources
-}
+
 what_to_install_login_manager() {
 	login=$(dialog --menu "Do you want to install login manager?" 15 40 5 1 "YES" 2 "NO" --stdout)
 }
@@ -142,8 +130,6 @@ then
 	       dialog --infobox "Skping i3 gaps installation"; sleep 2
 
         fi
-	startx
-        replaceing_config_files
 	what_to_install_login_manager
 	if [ $login -eq 1 ]
 	then
