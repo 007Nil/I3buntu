@@ -121,15 +121,16 @@ then
 	i3_packges
 	select_network_manager 
 	if [ $network_manager -eq 1 ]
-        then
+    then
+        sudo apt-get install network manager gnome
+	else
+		sudo apt-get install wicd-gtk
+	fi
 
 	will_install_i3gaps
 	if [ $i3gaps -eq 1 ]
 	then
-		sudo apt-get install network manager gnome
-	else
-		sudo apt-get install wicd-gtk
-	fi
+		
 		check_version
 		if [ $version -eq 1 ]
 		then
