@@ -43,6 +43,7 @@ i3_packges () {
 
 select_network_manager () {
 	network_manager=$(dialog --title "Network Manager setup" --menu "Please select your  preferable Network Manager" 15 55 5 1"Network Manager Gnome" 2"Wicd" --stdout)
+}
 
 will_install_i3gaps () {
 	i3gaps=$(dialog --title "Do you want i3-gapps??Its looks good!!" --menu "please select an option" 15 55 5 1 "YES" 2 "NO" --stdout)
@@ -112,7 +113,7 @@ what_to_install_login_manager() {
 sudo apt-get install git dialog 
 #Welcome Screen
 welcomemsg
-#
+#get confermation
 confermation_from_user
 
 if [ $confermation -eq 0 ]
@@ -121,8 +122,8 @@ then
 	i3_packges
 	select_network_manager 
 	if [ $network_manager -eq 1 ]
-    then
-        sudo apt-get install network manager gnome
+        then
+                sudo apt-get install network-manager-gnome 
 	else
 		sudo apt-get install wicd-gtk
 	fi
@@ -134,7 +135,7 @@ then
 		then
 			Ubuntu_16_04
 		else
-            Ubuntu_18_04
+                        Ubuntu_18_04
 		fi
         Installing_i3_gaps
         else
