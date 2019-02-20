@@ -42,7 +42,7 @@ i3_packges () {
 }
 
 select_network_manager () {
-	network_manager=$(dialog --title "Network Manager setup" --menu "Please select your  preferable Network Manager" 15 55 5 1"Network Manager Gnome" 2"Wicd" --stdout)
+	network_manager=$(dialog --title "Network Manager setup" --menu "Please select your  preferable Network Manager" 15 55 5 1 "Network Manager Gnome" 2 "Wicd" --stdout)
 }
 
 will_install_i3gaps () {
